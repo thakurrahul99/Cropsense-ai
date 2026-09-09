@@ -102,8 +102,7 @@ const FEATURES = [
     title: "AI Detection Engine",
     desc: "Multi-spectral deep learning model trained on 500,000+ crop disease images across Indian agro-climatic zones.",
     badge: "94.7% Accuracy",
-    image:
-      "https://images.unsplash.com/photo-1628352081506-83c43123a6b9?w=600&q=80",
+    image: "/Images/aiDetaction.jpg",
     color: "#00E5A0",
   },
   {
@@ -111,8 +110,7 @@ const FEATURES = [
     title: "Risk Intelligence Map",
     desc: "Live GIS dashboard showing disease outbreak clusters, spread vectors, and high-risk zone forecasting.",
     badge: "Real-time GIS",
-    image:
-      "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&q=80",
+    image: "/Images/map.jpg",
     color: "#3B82F6",
   },
   {
@@ -120,8 +118,7 @@ const FEATURES = [
     title: "Farmer Advisory",
     desc: "Personalized, language-aware IPM advisory with safe input recommendations and extension officer referrals.",
     badge: "3 Languages",
-    image:
-      "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?w=600&q=80",
+    image: "/Images/farmer advisary.jpg",
     color: "#F59E0B",
   },
   {
@@ -129,8 +126,7 @@ const FEATURES = [
     title: "Officer Command Center",
     desc: "District-level intelligence dashboard for agriculture officers — verify reports, spot outbreaks, deploy advisories.",
     badge: "Gov. Grade",
-    image:
-      "https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=600&q=80",
+    image: "/Images/command centre.jpg",
     color: "#8B5CF6",
   },
 ];
@@ -202,8 +198,15 @@ function StatCard({
 export default function LandingPage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef });
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const heroY = useSpring(useTransform(scrollYProgress, [0, 0.75], [0, -140]), {
+    stiffness: 120,
+    damping: 28,
+    mass: 0.7,
+  });
+  const heroOpacity = useSpring(
+    useTransform(scrollYProgress, [0, 0.65], [1, 0]),
+    { stiffness: 120, damping: 30, mass: 0.7 },
+  );
 
   return (
     <div className="min-h-screen bg-forest-900 overflow-x-hidden">
