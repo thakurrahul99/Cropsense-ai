@@ -1,4 +1,4 @@
-🌱 CropSense AI
+🌱 appresence
 
 AI-Powered Crop Health Intelligence Platform
 
