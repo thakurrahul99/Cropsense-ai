@@ -86,7 +86,7 @@ const FEATURES = [
     title: "AI Detection Engine",
     desc: "Multi-spectral deep learning model trained on 500,000+ crop disease images across Indian agro-climatic zones.",
     badge: "94.7% Accuracy",
-    image: "/Images/aiDetaction.jpg",
+    image: "/images/aiDetaction.jpg",
     color: "#00E5A0",
   },
   {
@@ -94,7 +94,7 @@ const FEATURES = [
     title: "Risk Intelligence Map",
     desc: "Live GIS dashboard showing disease outbreak clusters, spread vectors, and high-risk zone forecasting.",
     badge: "Real-time GIS",
-    image: "/Images/map.jpg",
+    image: "/images/map.jpg",
     color: "#3B82F6",
   },
   {
@@ -102,7 +102,7 @@ const FEATURES = [
     title: "Farmer Advisory",
     desc: "Personalized, language-aware IPM advisory with safe input recommendations and extension officer referrals.",
     badge: "3 Languages",
-    image: "/Images/farmer advisary.jpg",
+    image: "/images/farmer advisary.jpg",
     color: "#F59E0B",
   },
   {
@@ -110,7 +110,7 @@ const FEATURES = [
     title: "Officer Command Center",
     desc: "District-level intelligence dashboard for agriculture officers — verify reports, spot outbreaks, deploy advisories.",
     badge: "Gov. Grade",
-    image: "/Images/command centre.jpg",
+    image: "/images/command centre.jpg",
     color: "#8B5CF6",
   },
 ];
