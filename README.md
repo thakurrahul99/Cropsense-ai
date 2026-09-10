@@ -1,54 +1,50 @@
-# 🌱 AgriSense AI
+🌱 CropSense AI
 
-### **AI-Powered Crop Health Intelligence Platform**
+AI-Powered Crop Health Intelligence Platform
 
-**Smart Detection • Risk Prediction • GIS Intelligence • Actionable Advisory**
+Smart Detection • Risk Prediction • GIS Intelligence • Actionable Advisory
 
-> **SIH 2026 — Problem Statement: SIH26131**
-> *Early Detection and Management of Crop Diseases & Pest Infestations*
+«SIH 2026 — Problem Statement: SIH26131
+Early Detection and Management of Crop Diseases & Pest Infestations»
 
 ---
 
-## 🚜 What is AgriSense?
+🚜 What is CropSense?
 
-**AgriSense AI** is a software-only, AI-powered **crop health intelligence platform** designed to help farmers and agricultural authorities detect, understand, predict, and manage crop diseases and pest infestations at an early stage.
+CropSense AI is a software-only, AI-powered crop health intelligence platform designed to help farmers and agricultural authorities detect, understand, predict, and manage crop diseases and pest infestations at an early stage.
 
 Instead of simply identifying a disease, CropSense creates a complete intelligence cycle:
 
-```text
 DETECT → UNDERSTAND → PREDICT → MAP → ADVISE → VERIFY → LEARN
-```
 
-### 🎯 Our Vision
+🎯 Our Vision
 
-> **We don't just detect disease.**
-> **We predict the risk.**
-> **We map the threat.**
-> **We guide the farmer.**
-> **We help authorities respond early.**
-
----
-
-# ✨ Core Capabilities
-
-| 🌾 Farmer Intelligence     | 🏛️ Officer Intelligence       |
-| -------------------------- | ------------------------------ |
-| 📷 Crop Image Scanning     | 🗺️ Regional Risk Map          |
-| 🤖 AI Disease Detection    | 🔥 Disease/Pest Hotspots       |
-| 🐛 Pest Identification     | 📊 Crop-wise Analytics         |
-| 📈 Confidence & Severity   | 📈 Regional Trends             |
-| 🌦️ Weather Intelligence   | 🔍 AI Diagnosis Validation     |
-| ⚠️ Crop Risk Prediction    | 🚨 Early-Warning Monitoring    |
-| 🗺️ Local Risk Information | 📋 Farmer Report Review        |
-| 💡 Actionable Advisory     | ✅ Confirm / Reject / Review    |
-| 🌐 Multilingual Support    | 🛰️ Emerging Threat Monitoring |
-| 📚 Crop Health History     | 📊 Threat Intelligence         |
+«We don't just detect disease.
+We predict the risk.
+We map the threat.
+We guide the farmer.
+We help authorities respond early.»
 
 ---
 
-# 🔄 AgriSense Intelligence Pipeline
+✨ Core Capabilities
 
-```text
+🌾 Farmer Intelligence| 🏛️ Officer Intelligence
+📷 Crop Image Scanning| 🗺️ Regional Risk Map
+🤖 AI Disease Detection| 🔥 Disease/Pest Hotspots
+🐛 Pest Identification| 📊 Crop-wise Analytics
+📈 Confidence & Severity| 📈 Regional Trends
+🌦️ Weather Intelligence| 🔍 AI Diagnosis Validation
+⚠️ Crop Risk Prediction| 🚨 Early-Warning Monitoring
+🗺️ Local Risk Information| 📋 Farmer Report Review
+💡 Actionable Advisory| ✅ Confirm / Reject / Review
+🌐 Multilingual Support| 🛰️ Emerging Threat Monitoring
+📚 Crop Health History| 📊 Threat Intelligence
+
+---
+
+🔄 CropSense Intelligence Pipeline
+
                  📷 CROP IMAGE
                        │
                        ▼
@@ -77,15 +73,13 @@ DETECT → UNDERSTAND → PREDICT → MAP → ADVISE → VERIFY → LEARN
                        │
                        ▼
                 💡 FARMER ADVISORY
-```
 
 ---
 
-# 🧩 Product Architecture
+🧩 Product Architecture
 
-```text
                          ┌─────────────────────┐
-                         │      🌱 AgriSense   │
+                         │      🌱 CropSense   │
                          └──────────┬──────────┘
                                     │
                   ┌─────────────────┴─────────────────┐
@@ -123,66 +117,64 @@ DETECT → UNDERSTAND → PREDICT → MAP → ADVISE → VERIFY → LEARN
           │    Pest    │ │  Engine  │ │  Engine   │
           │ Detection  │ │          │ │           │
           └────────────┘ └──────────┘ └───────────┘
-```
 
 ---
 
-# 👨‍🌾 Farmer Experience
+👨‍🌾 Farmer Experience
 
-### 01 — Scan
+01 — Scan
 
 Farmer captures or uploads a crop image.
 
-### 02 — Detect
+02 — Detect
 
 AI identifies possible diseases or pest infestations.
 
-### 03 — Understand
+03 — Understand
 
 The platform provides:
 
-* Disease / pest name
-* Confidence score
-* Estimated severity
-* Possible causes
-* Crop context
+- Disease / pest name
+- Confidence score
+- Estimated severity
+- Possible causes
+- Crop context
 
-### 04 — Predict
+04 — Predict
 
 CropSense combines:
 
-**AI + Weather + Crop Stage + Location**
+AI + Weather + Crop Stage + Location
 
 to estimate the current and emerging risk.
 
-### 05 — Act
+05 — Act
 
 The farmer receives a clear, actionable and multilingual advisory.
 
-### 06 — Monitor
+06 — Monitor
 
 Crop health history, follow-ups and alerts help track the situation over time.
 
 ---
 
-# 🏛️ Agricultural Officer Command Center
+🏛️ Agricultural Officer Command Center
 
-AgriSense also provides a centralized monitoring interface for agricultural authorities.
+CropSense also provides a centralized monitoring interface for agricultural authorities.
 
-### 🔥 Threat Intelligence
+🔥 Threat Intelligence
 
-* Disease hotspots
-* Pest hotspots
-* Emerging threats
-* Regional risk levels
-* Crop-wise trends
-* Time-based trends
+- Disease hotspots
+- Pest hotspots
+- Emerging threats
+- Regional risk levels
+- Crop-wise trends
+- Time-based trends
 
-### 🔍 AI Diagnosis Validation
+🔍 AI Diagnosis Validation
 
 Every AI-generated diagnosis can move through:
 
-```text
 AI Detection
      ↓
 Officer Review
@@ -190,17 +182,15 @@ Officer Review
 ┌──────────┬──────────┬──────────────┐
 │ Confirm  │  Reject  │ Needs Review │
 └──────────┴──────────┴──────────────┘
-```
 
-This creates a **human-in-the-loop validation system**.
+This creates a human-in-the-loop validation system.
 
 ---
 
-# 🗺️ GIS Risk Intelligence
+🗺️ GIS Risk Intelligence
 
-AgriSense transforms individual crop diagnoses into **regional intelligence**.
+CropSense transforms individual crop diagnoses into regional intelligence.
 
-```text
 Individual Reports
        ↓
 AI Diagnoses
@@ -212,100 +202,96 @@ Risk Analysis
 🗺️ Regional Hotspot Map
        ↓
 🚨 Early Warning
-```
 
-### GIS Layer
+GIS Layer
 
-* Disease hotspots
-* Pest hotspots
-* Regional risk levels
-* Crop distribution
-* Report density
-* Emerging threat zones
+- Disease hotspots
+- Pest hotspots
+- Regional risk levels
+- Crop distribution
+- Report density
+- Emerging threat zones
 
 ---
 
-# 🤖 AI / ML System
+🤖 AI / ML System
 
-### AI Responsibilities
+AI Responsibilities
 
-**Garima Agrawal & Rishika Chaudhary**
+Garima Agrawal & Rishika Chaudhary
 
 The AI/ML layer focuses on:
 
-* Crop disease detection
-* Pest identification
-* Image preprocessing
-* Computer vision
-* Transfer learning
-* Pretrained vision models
-* Model evaluation
-* Confidence estimation
-* Severity estimation
-* Weather-based risk analysis
-* Crop-stage risk analysis
-* Regional risk intelligence
-* AI inference API
-* Model optimization
+- Crop disease detection
+- Pest identification
+- Image preprocessing
+- Computer vision
+- Transfer learning
+- Pretrained vision models
+- Model evaluation
+- Confidence estimation
+- Severity estimation
+- Weather-based risk analysis
+- Crop-stage risk analysis
+- Regional risk intelligence
+- AI inference API
+- Model optimization
 
-### 🧠 AI Stack
+🧠 AI Stack
 
-```text
 Python
    │
    ├── PyTorch
    ├── OpenCV
    ├── YOLO / Vision Models
    └── FastAPI
-```
 
 ---
 
-# ⚙️ Backend System
+⚙️ Backend System
 
-### Backend Team
+Backend Team
 
-**Manish Kumar • Harsh Singh**
+Manish Kumar • Harsh Singh
 
 Responsible for the complete server-side architecture.
 
-### Core Responsibilities
+Core Responsibilities
 
-* Node.js / Next.js backend
-* REST APIs
-* Server Actions
-* MongoDB
-* Authentication
-* Authorization
-* Farmer & Officer roles
-* Farm management
-* Crop management
-* Scan records
-* Diagnosis records
-* Risk assessment
-* Weather integration
-* Reports
-* Officer verification
-* Advisory management
-* Alert management
-* Follow-up tracking
-* API validation
-* Security
-* AI service integration
+- Node.js / Next.js backend
+- REST APIs
+- Server Actions
+- MongoDB
+- Authentication
+- Authorization
+- Farmer & Officer roles
+- Farm management
+- Crop management
+- Scan records
+- Diagnosis records
+- Risk assessment
+- Weather integration
+- Reports
+- Officer verification
+- Advisory management
+- Alert management
+- Follow-up tracking
+- API validation
+- Security
+- AI service integration
 
 ---
 
-# 🎨 Frontend System
+🎨 Frontend System
 
-### Frontend Lead
+Frontend Lead
 
-**Rahul Singh**
+Rahul Singh
 
 Responsible for the complete user-facing experience of CropSense.
 
-### Technology
+Technology
 
-```text
 Next.js
 React
 TypeScript
@@ -314,31 +300,29 @@ shadcn/ui
 Lucide Icons
 Motion / Framer Motion
 Recharts
-```
 
-### Frontend Responsibilities
+Frontend Responsibilities
 
-* 👨‍🌾 Farmer Dashboard
-* 📷 Crop Scanning Interface
-* 🤖 AI Diagnosis Screens
-* ⚠️ Risk Intelligence UI
-* 🌦️ Weather Interface
-* 🗺️ GIS / Map Integration
-* 💡 Advisory Interface
-* 🏛️ Officer Dashboard
-* 📊 Charts & Data Visualization
-* ✨ Animations & Micro-interactions
-* ♿ Accessibility
-* 📱 Responsive Design
-* 🔗 Backend / AI API Integration
+- 👨‍🌾 Farmer Dashboard
+- 📷 Crop Scanning Interface
+- 🤖 AI Diagnosis Screens
+- ⚠️ Risk Intelligence UI
+- 🌦️ Weather Interface
+- 🗺️ GIS / Map Integration
+- 💡 Advisory Interface
+- 🏛️ Officer Dashboard
+- 📊 Charts & Data Visualization
+- ✨ Animations & Micro-interactions
+- ♿ Accessibility
+- 📱 Responsive Design
+- 🔗 Backend / AI API Integration
 
 ---
 
-# 📊 Data & Intelligence Layer
+📊 Data & Intelligence Layer
 
-AgriSense combines multiple data sources:
+CropSense combines multiple data sources:
 
-```text
              ┌─────────────┐
              │ Crop Image  │
              └──────┬──────┘
@@ -361,54 +345,52 @@ AgriSense combines multiple data sources:
               ▼           ▼
          👨‍🌾 Farmer    🏛️ Officer
          Advisory       Dashboard
-```
 
 ---
 
-# 🛠️ Technology Stack
+🛠️ Technology Stack
 
-## 🎨 Frontend
+🎨 Frontend
 
-* **Next.js**
-* **React**
-* **TypeScript**
-* **Tailwind CSS**
-* **shadcn/ui**
-* **Lucide Icons**
-* **Motion / Framer Motion**
-* **Recharts**
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Lucide Icons
+- Motion / Framer Motion
+- Recharts
 
-## ⚙️ Backend
+⚙️ Backend
 
-* **Node.js**
-* **Next.js API Routes / Server Actions**
-* **MongoDB**
+- Node.js
+- Next.js API Routes / Server Actions
+- MongoDB
 
-## 🤖 AI / ML
+🤖 AI / ML
 
-* **Python**
-* **FastAPI**
-* **PyTorch**
-* **OpenCV**
-* **YOLO / Suitable Pretrained Vision Models**
+- Python
+- FastAPI
+- PyTorch
+- OpenCV
+- YOLO / Suitable Pretrained Vision Models
 
-## 🗺️ GIS
+🗺️ GIS
 
-* **Leaflet**
-* **OpenStreetMap**
-* **GeoJSON**
+- Leaflet
+- OpenStreetMap
+- GeoJSON
 
 ---
 
-# 🚀 What Makes CropSense Different?
+🚀 What Makes CropSense Different?
 
-### 🔎 Detection → Intelligence
+🔎 Detection → Intelligence
 
 Traditional systems may stop after identifying a disease.
 
-**AgriSense goes further.**
+CropSense goes further.
 
-```text
 Detection
    ↓
 Severity
@@ -426,83 +408,80 @@ Regional Mapping
 Actionable Advisory
    ↓
 Officer Verification
-```
 
-### 💡 Key Innovation
+💡 Key Innovation
 
-> **AgriSense converts individual crop observations into actionable regional agricultural intelligence.**
+«CropSense converts individual crop observations into actionable regional agricultural intelligence.»
 
 This enables a shift from:
 
-**Reactive Disease Management**
+Reactive Disease Management
 
 to
 
-**Proactive Risk Management**
+Proactive Risk Management
 
 ---
 
-# 🌱 Product Impact
+🌱 Product Impact
 
-### For Farmers 👨‍🌾
+For Farmers 👨‍🌾
 
-* Earlier disease detection
-* Faster decision-making
-* Easy-to-understand AI results
-* Localized risk information
-* Actionable advisories
-* Early warnings
-* Crop health history
+- Earlier disease detection
+- Faster decision-making
+- Easy-to-understand AI results
+- Localized risk information
+- Actionable advisories
+- Early warnings
+- Crop health history
 
-### For Agricultural Authorities 🏛️
+For Agricultural Authorities 🏛️
 
-* Regional threat visibility
-* GIS-based hotspot detection
-* AI-assisted monitoring
-* Human validation
-* Disease trend analysis
-* Early-warning capabilities
-* Data-driven intervention
-
----
-
-# 🔮 Future Scope
-
-AgriSense can evolve into a larger agricultural intelligence ecosystem with:
-
-* 📡 IoT-based field monitoring
-* 🛰️ Satellite imagery
-* 🌍 Large-scale regional forecasting
-* 📱 Offline-first farmer application
-* 🗣️ Voice-based agricultural assistant
-* 🌐 More regional languages
-* 🧠 Continuous model learning
-* 📈 Advanced outbreak prediction
-* ☁️ Cloud-scale AI inference
-* 🔗 Government agricultural data integration
+- Regional threat visibility
+- GIS-based hotspot detection
+- AI-assisted monitoring
+- Human validation
+- Disease trend analysis
+- Early-warning capabilities
+- Data-driven intervention
 
 ---
 
-# 👥 Team
+🔮 Future Scope
 
-| Member                | Role                    |
-| --------------------- | ----------------------- |
-| **Rahul Singh**       | 🎨 Frontend Development |
-| **Manish Kumar**      | ⚙️ Backend Development  |
-| **Harsh Singh**       | ⚙️ Backend Development  |
-| **Vaishali Sharma**   | 📊 PPT / Presentation   |
-| **Garima Agrawal**    | 🤖 AI / ML              |
-| **Rishika Chaudhary** | 🤖 AI / ML              |
+CropSense can evolve into a larger agricultural intelligence ecosystem with:
+
+- 📡 IoT-based field monitoring
+- 🛰️ Satellite imagery
+- 🌍 Large-scale regional forecasting
+- 📱 Offline-first farmer application
+- 🗣️ Voice-based agricultural assistant
+- 🌐 More regional languages
+- 🧠 Continuous model learning
+- 📈 Advanced outbreak prediction
+- ☁️ Cloud-scale AI inference
+- 🔗 Government agricultural data integration
 
 ---
 
-# 🏆 Team Objective
+👥 Team
 
-> **Build CropSense into a practical, scalable and visually impressive software solution for early crop disease and pest management.**
+Member| Role
+Rahul Singh| 🎨 Frontend Development
+Manish Kumar| ⚙️ Backend Development
+Harsh Singh| ⚙️ Backend Development
+Vaishali Sharma| 📊 PPT / Presentation
+Garima Agrawal| 🤖 AI / ML
+Rishika Chaudhary| 🤖 AI / ML
 
-### Our Complete Intelligence Cycle
+---
 
-```text
+🏆 Team Objective
+
+«Build CropSense into a practical, scalable and visually impressive software solution for early crop disease and pest management.»
+
+Our Complete Intelligence Cycle
+
        🌱
     DETECT
        ↓
@@ -518,12 +497,11 @@ AgriSense can evolve into a larger agricultural intelligence ecosystem with:
        ↓
      LEARN
        ↺
-```
 
 ---
 
-## 🌾 AgriSense AI
+🌾 CropSense AI
 
-### **From a single crop image to regional agricultural intelligence.**
+From a single crop image to regional agricultural intelligence.
 
-**Detect early. Predict risk. Map threats. Guide farmers. Enable authorities.**
+Detect early. Predict risk. Map threats. Guide farmers. Enable authorities.
