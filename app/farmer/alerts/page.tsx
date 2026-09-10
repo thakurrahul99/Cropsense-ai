@@ -18,6 +18,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { ALERTS } from "@/lib/mock-data/alerts";
 import { Alert } from "@/lib/mock-data/alerts";
 import { cn, formatRelativeTime } from "@/lib/utils";
+import { useAppContext } from "@/lib/context/AppContext";
 
 const SEVERITY_CONFIG = {
   critical: {
@@ -74,7 +75,7 @@ function AlertCard({ alert, onDismiss }: { alert: Alert; onDismiss: (id: string)
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2 mb-1">
             <h3 className={cn("font-display font-semibold text-sm", alert.isRead ? "text-pearl-muted" : "text-pearl")}>
-              {alert.title}
+              {alert.title.en}
             </h3>
             <button
               onClick={() => onDismiss(alert.id)}
@@ -119,7 +120,9 @@ function AlertCard({ alert, onDismiss }: { alert: Alert; onDismiss: (id: string)
 }
 
 export default function AlertsPage() {
-  const [alerts, setAlerts] = useState(ALERTS);
+  const { selectedState } = useAppContext();
+  const baseAlerts = selectedState ? ALERTS.filter((a) => a.state === selectedState) : ALERTS;
+  const [alerts, setAlerts] = useState(baseAlerts);
   const [filter, setFilter] = useState("all");
 
   const dismiss = (id: string) => {

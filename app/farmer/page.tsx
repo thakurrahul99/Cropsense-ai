@@ -22,9 +22,10 @@ import {
 import { Navbar } from "@/components/layout/Navbar";
 import { HISTORY } from "@/lib/mock-data/history";
 import { ALERTS } from "@/lib/mock-data/alerts";
-import { WEATHER } from "@/lib/mock-data/weather";
+import { getWeatherForDistrict } from "@/lib/mock-data/weather";
 import { formatRelativeTime, getSeverityColor, getStatusBadgeClass } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { useAppContext } from "@/lib/context/AppContext";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -47,10 +48,21 @@ function SeverityDot({ level }: { level: string }) {
 }
 
 export default function FarmerDashboard() {
-  const unreadAlerts = ALERTS.filter((a) => !a.isRead).length;
-  const criticalAlerts = ALERTS.filter((a) => a.severity === "critical").length;
-  const recentScans = HISTORY.slice(0, 3);
-  const latestScan = HISTORY[0];
+  const { selectedState, selectedStateInfo } = useAppContext();
+  const district = selectedStateInfo?.districts[0] ?? "Wardha";
+  const weather = getWeatherForDistrict(district);
+
+  const filteredAlerts = selectedState
+    ? ALERTS.filter((a) => a.state === selectedState)
+    : ALERTS;
+  const filteredHistory = selectedState
+    ? HISTORY.filter((h) => h.state === selectedState)
+    : HISTORY;
+
+  const unreadAlerts = filteredAlerts.filter((a) => !a.isRead).length;
+  const criticalAlerts = filteredAlerts.filter((a) => a.severity === "critical").length;
+  const recentScans = filteredHistory.slice(0, 3);
+  const latestScan = filteredHistory[0] ?? HISTORY[0];
 
   return (
     <div className="min-h-screen bg-forest-900">
@@ -267,20 +279,20 @@ export default function FarmerDashboard() {
               <motion.div variants={itemVariants} className="glass-card p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="font-display font-semibold text-pearl">Weather</h2>
-                  <span className="badge-neutral text-2xs">{WEATHER.district}</span>
+                  <span className="badge-neutral text-2xs">{weather.district}</span>
                 </div>
                 <div className="text-center mb-4">
                   <div className="font-display font-bold text-5xl text-pearl mb-1">
-                    {WEATHER.temp}°
+                    {weather.temp}°
                   </div>
-                  <div className="text-pearl-muted text-sm">{WEATHER.condition}</div>
-                  <div className="text-pearl-dim text-xs mt-1">Feels like {WEATHER.feelsLike}°C</div>
+                  <div className="text-pearl-muted text-sm">{weather.condition}</div>
+                  <div className="text-pearl-dim text-xs mt-1">Feels like {weather.feelsLike}°C</div>
                 </div>
                 <div className="grid grid-cols-3 gap-2 mb-4">
                   {[
-                    { icon: Droplets, label: "Humidity", value: `${WEATHER.humidity}%`, color: "#3B82F6" },
-                    { icon: Wind, label: "Wind", value: `${WEATHER.windSpeed} km/h`, color: "#00E5A0" },
-                    { icon: TrendingUp, label: "Rain", value: `${WEATHER.rainfall}mm`, color: "#F59E0B" },
+                    { icon: Droplets, label: "Humidity", value: `${weather.humidity}%`, color: "#3B82F6" },
+                    { icon: Wind, label: "Wind", value: `${weather.windSpeed} km/h`, color: "#00E5A0" },
+                    { icon: TrendingUp, label: "Rain", value: `${weather.rainfall}mm`, color: "#F59E0B" },
                   ].map((w) => {
                     const Icon = w.icon;
                     return (
@@ -293,7 +305,7 @@ export default function FarmerDashboard() {
                   })}
                 </div>
                 <div className="flex gap-1 overflow-x-auto pb-1">
-                  {WEATHER.weekForecast.slice(0, 5).map((day) => (
+                  {weather.weekForecast.slice(0, 5).map((day) => (
                     <div key={day.day} className="flex-1 min-w-0 bg-forest-700/30 rounded-lg p-2 text-center">
                       <div className="text-pearl-dim text-2xs">{day.day}</div>
                       <div className="text-lg my-1">
@@ -303,16 +315,16 @@ export default function FarmerDashboard() {
                     </div>
                   ))}
                 </div>
-                {WEATHER.soilMoisture > 0 && (
+                {weather.soilMoisture > 0 && (
                   <div className="mt-3">
                     <div className="flex justify-between text-xs mb-1">
                       <span className="text-pearl-muted">Soil Moisture</span>
-                      <span className="text-blue-400">{WEATHER.soilMoisture}%</span>
+                      <span className="text-blue-400">{weather.soilMoisture}%</span>
                     </div>
                     <div className="h-1.5 bg-forest-700 rounded-full">
                       <div
                         className="h-full bg-blue-400/70 rounded-full"
-                        style={{ width: `${WEATHER.soilMoisture}%` }}
+                        style={{ width: `${weather.soilMoisture}%` }}
                       />
                     </div>
                   </div>
@@ -336,7 +348,7 @@ export default function FarmerDashboard() {
                   </Link>
                 </div>
                 <div className="space-y-3">
-                  {ALERTS.filter((a) => !a.isRead).slice(0, 3).map((alert) => (
+                  {filteredAlerts.filter((a) => !a.isRead).slice(0, 3).map((alert) => (
                     <div
                       key={alert.id}
                       className={cn(
@@ -349,7 +361,7 @@ export default function FarmerDashboard() {
                       )}
                     >
                       <div className="text-pearl text-xs font-medium mb-0.5 line-clamp-2">
-                        {alert.title}
+                        {alert.title.en}
                       </div>
                       <div className="flex items-center justify-between mt-1">
                         <span className="text-pearl-dim text-2xs">{alert.district}</span>

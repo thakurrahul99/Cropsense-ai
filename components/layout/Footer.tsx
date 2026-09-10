@@ -2,8 +2,19 @@
 
 import Link from "next/link";
 import { Leaf, ExternalLink, GitBranch, Send } from "lucide-react";
+import { useAppContext } from "@/lib/context/AppContext";
 
 export function Footer() {
+  const { selectedStateInfo } = useAppContext();
+
+  const govtBadge = selectedStateInfo
+    ? `Govt. of ${selectedStateInfo.name}`
+    : "Ministry of Agriculture & Farmers Welfare, Govt. of India";
+
+  const description = selectedStateInfo
+    ? `AI-powered crop health intelligence for early disease detection, localized risk forecasting, and actionable agricultural advisories across ${selectedStateInfo.name}.`
+    : "AI-powered crop health intelligence for early disease detection, localized risk forecasting, and actionable agricultural advisories across all Indian states and union territories.";
+
   return (
     <footer className="border-t border-forest-600/30 bg-forest-950/80 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -19,12 +30,11 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-pearl-muted text-sm leading-relaxed max-w-xs">
-              AI-powered crop health intelligence for early disease detection, localized
-              risk forecasting, and actionable agricultural advisories across Maharashtra.
+              {description}
             </p>
             <div className="mt-4 flex items-center gap-1">
               <span className="badge-jade text-2xs">SIH 2026 Project</span>
-              <span className="badge-neutral text-2xs">Govt. of Maharashtra</span>
+              <span className="badge-neutral text-2xs">{govtBadge}</span>
             </div>
           </div>
 
@@ -58,7 +68,7 @@ export function Footer() {
               {[
                 { label: "ICAR Research Hub", href: "#" },
                 { label: "Krishi Vigyan Kendras", href: "#" },
-                { label: "Maharashtra Agriculture Dept.", href: "#" },
+                { label: "India Agriculture Dept.", href: "#" },
                 { label: "Disease Library", href: "#" },
                 { label: "API Documentation", href: "#" },
               ].map((link) => (
@@ -88,7 +98,7 @@ export function Footer() {
               <Send className="w-4 h-4" />
             </a>
             <span className="text-pearl-dim text-xs">
-              Built for Maharashtra Farmers 🌱
+              Built for India&apos;s Farmers 🌱
             </span>
           </div>
         </div>

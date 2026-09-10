@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import {
   ArrowLeft,
   CheckCircle,
@@ -19,12 +19,13 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
-import { ADVISORIES } from "@/lib/mock-data/advisory";
+import { ADVISORIES, getKVKForDistrict } from "@/lib/mock-data/advisory";
 import { SCAN_RESULTS } from "@/lib/mock-data/scan-results";
 import { cn } from "@/lib/utils";
+import { useAppContext } from "@/lib/context/AppContext";
 
 const result = SCAN_RESULTS[0];
-const advisory = ADVISORIES["cotton-bollworm"];
+
 
 const CATEGORY_ICONS: Record<string, React.ElementType> = {
   chemical: FlaskConical,
@@ -43,6 +44,13 @@ const CATEGORY_COLORS: Record<string, string> = {
 const PRIORITY_ORDER = ["immediate", "short-term", "preventive"];
 
 export default function AdvisoryPage() {
+  const { selectedStateInfo } = useAppContext();
+  const district = SCAN_RESULTS[0]?.district ?? selectedStateInfo?.districts[0] ?? "Wardha";
+  const advisory = {
+    ...ADVISORIES["cotton-bollworm"],
+    referralInfo: getKVKForDistrict(district),
+  };
+
   const [followedSteps, setFollowedSteps] = useState<Set<string>>(new Set());
   const [expandedStep, setExpandedStep] = useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>("all");
@@ -133,6 +141,7 @@ export default function AdvisoryPage() {
 
           {/* IPM Steps */}
           <div className="space-y-3 mb-6">
+            <LayoutGroup>
             <AnimatePresence>
               {filteredSteps.map((step, i) => {
                 const CategoryIcon = CATEGORY_ICONS[step.category] ?? Shield;
@@ -142,6 +151,7 @@ export default function AdvisoryPage() {
 
                 return (
                   <motion.div
+                    layout
                     key={step.id}
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -188,7 +198,7 @@ export default function AdvisoryPage() {
                             <span className="text-pearl-dim text-2xs capitalize">{step.category}</span>
                           </div>
                           <h3 className={cn("font-display font-semibold text-sm", isFollowed ? "text-jade-400 line-through opacity-70" : "text-pearl")}>
-                            {step.title}
+                            {step.title.en}
                           </h3>
                           <div className="flex items-center gap-3 mt-1 text-2xs text-pearl-dim">
                             <span className="flex items-center gap-1">
@@ -246,6 +256,7 @@ export default function AdvisoryPage() {
                 );
               })}
             </AnimatePresence>
+            </LayoutGroup>
           </div>
 
           {/* Input Recommendations */}

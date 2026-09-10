@@ -197,8 +197,8 @@ export default function MapClient() {
       {/* Leaflet map */}
       <div className="flex-1 pt-16 relative">
         <MapContainer
-          center={[19.7515, 75.7139]}
-          zoom={7}
+          center={[22.9734, 78.6569]}
+          zoom={5}
           style={{ width: "100%", height: "calc(100vh - 64px)" }}
           zoomControl={true}
         >

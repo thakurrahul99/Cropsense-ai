@@ -1,8 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
   FileText,
   ShieldCheck,
@@ -43,33 +43,19 @@ import {
   type ReportItem,
 } from "@/lib/mock-data/officer-stats";
 import { cn, formatRelativeTime, getSeverityColor } from "@/lib/utils";
+import { useCounter } from "@/lib/hooks/useCounter";
 
-// KPI card with animated counter
+// KPI card with animated counter using shared useCounter hook
 function KPICard({ kpi, index }: { kpi: typeof OFFICER_KPIS[0]; index: number }) {
-  const [displayValue, setDisplayValue] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true });
+  const displayValue = useCounter(kpi.value, 1500, inView);
   const TrendIcon = kpi.trend === "up" ? TrendingUp : kpi.trend === "down" ? TrendingDown : Minus;
   const trendColor = kpi.trend === "up" ? "#00E5A0" : kpi.trend === "down" ? "#EF4444" : "#7A9E8A";
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const start = 0;
-      const end = kpi.value;
-      const duration = 1500;
-      const startTime = Date.now();
-      const frame = () => {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        setDisplayValue(Math.round(start + (end - start) * eased));
-        if (progress < 1) requestAnimationFrame(frame);
-      };
-      requestAnimationFrame(frame);
-    }, index * 120);
-    return () => clearTimeout(timer);
-  }, [kpi.value, index]);
-
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
@@ -217,7 +203,7 @@ export default function OfficerPage() {
                   Officer Command Center
                 </h1>
                 <p className="text-pearl-muted text-sm">
-                  Maharashtra Agricultural Intelligence Dashboard — Kharif 2026
+                   India Agricultural Intelligence Dashboard — Kharif 2026
                 </p>
               </div>
               <div className="ml-auto flex items-center gap-2">
@@ -271,12 +257,14 @@ export default function OfficerPage() {
                 </div>
 
                 <div style={{ height: 240 }}>
+                  <AnimatePresence mode="wait">
                   {activeChart === "disease" && (
+                    <motion.div key="disease" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.22 }} style={{ height: 240 }}>
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={DISEASE_TREND}>
                         <defs>
-                          {["cotton", "soybean", "wheat", "grape"].map((crop, i) => {
-                            const colors = ["#00E5A0", "#3B82F6", "#F59E0B", "#8B5CF6"];
+                          {["cotton", "soybean", "wheat", "rice", "grape"].map((crop, i) => {
+                            const colors = ["#00E5A0", "#3B82F6", "#F59E0B", "#06B6D4", "#8B5CF6"];
                             return (
                               <linearGradient key={crop} id={`grad-${crop}`} x1="0" y1="0" x2="0" y2="1">
                                 <stop offset="5%" stopColor={colors[i]} stopOpacity={0.25} />
@@ -294,19 +282,22 @@ export default function OfficerPage() {
                           { key: "cotton", color: "#00E5A0" },
                           { key: "soybean", color: "#3B82F6" },
                           { key: "wheat", color: "#F59E0B" },
+                          { key: "rice", color: "#06B6D4" },
                           { key: "grape", color: "#8B5CF6" },
                         ].map(({ key, color }) => (
                           <Area key={key} type="monotone" dataKey={key} stroke={color} strokeWidth={2} fill={`url(#grad-${key})`} dot={false} />
                         ))}
                       </AreaChart>
                     </ResponsiveContainer>
+                    </motion.div>
                   )}
                   {activeChart === "pest" && (
+                    <motion.div key="pest" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.22 }} style={{ height: 240 }}>
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={PEST_TREND}>
                         <defs>
-                          {["bollworm", "aphid", "stemBorer", "whitefly"].map((pest, i) => {
-                            const colors = ["#EF4444", "#F59E0B", "#8B5CF6", "#06B6D4"];
+                          {["bollworm", "aphid", "stemBorer", "planthopper", "whitefly"].map((pest, i) => {
+                            const colors = ["#EF4444", "#F59E0B", "#8B5CF6", "#06B6D4", "#10B981"];
                             return (
                               <linearGradient key={pest} id={`pg-${pest}`} x1="0" y1="0" x2="0" y2="1">
                                 <stop offset="5%" stopColor={colors[i]} stopOpacity={0.25} />
@@ -324,14 +315,17 @@ export default function OfficerPage() {
                           { key: "bollworm", color: "#EF4444" },
                           { key: "aphid", color: "#F59E0B" },
                           { key: "stemBorer", color: "#8B5CF6" },
-                          { key: "whitefly", color: "#06B6D4" },
+                          { key: "planthopper", color: "#06B6D4" },
+                          { key: "whitefly", color: "#10B981" },
                         ].map(({ key, color }) => (
                           <Area key={key} type="monotone" dataKey={key} stroke={color} strokeWidth={2} fill={`url(#pg-${key})`} dot={false} />
                         ))}
                       </AreaChart>
                     </ResponsiveContainer>
+                    </motion.div>
                   )}
                   {activeChart === "density" && (
+                    <motion.div key="density" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.22 }} style={{ height: 240 }}>
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={REPORT_DENSITY} layout="vertical">
                         <CartesianGrid strokeDasharray="3 3" stroke="rgba(122,158,138,0.1)" horizontal={false} />
@@ -342,7 +336,9 @@ export default function OfficerPage() {
                         <Bar dataKey="critical" fill="#EF4444" fillOpacity={0.7} radius={[0, 4, 4, 0]} />
                       </BarChart>
                     </ResponsiveContainer>
+                    </motion.div>
                   )}
+                  </AnimatePresence>
                 </div>
               </div>
 

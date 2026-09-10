@@ -5,8 +5,9 @@ import { AlertTriangle, CloudRain, Leaf, MapPin, ArrowLeft, TrendingUp, Thermome
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { SCAN_RESULTS } from "@/lib/mock-data/scan-results";
-import { WEATHER } from "@/lib/mock-data/weather";
+import { getWeatherForDistrict } from "@/lib/mock-data/weather";
 import { getSeverityColor } from "@/lib/utils";
+import { useAppContext } from "@/lib/context/AppContext";
 
 const result = SCAN_RESULTS[0];
 
@@ -44,6 +45,9 @@ function RiskRing({ label, value, color, icon: Icon, delay: d }: {
 }
 
 export default function RiskPage() {
+  const { selectedStateInfo } = useAppContext();
+  const district = result.district ?? selectedStateInfo?.districts[0] ?? "Wardha";
+  const WEATHER = getWeatherForDistrict(district);
   const overallRisk = result.riskLevel;
   const riskScore = Math.round(result.riskFactors.reduce((a, b) => a + b.score, 0) / result.riskFactors.length);
   const riskColor = overallRisk === "critical" ? "#EF4444" : overallRisk === "high" ? "#F59E0B" : "#00E5A0";

@@ -33,6 +33,7 @@ import dynamic from "next/dynamic";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
+import { useCounter } from "@/lib/hooks/useCounter";
 
 // Dynamic import for Three.js (SSR-safe)
 const HeroScene = dynamic(
@@ -40,28 +41,11 @@ const HeroScene = dynamic(
   { ssr: false, loading: () => null },
 );
 
-// Animated counter hook
-function useCounter(target: number, duration: number = 2000, inView: boolean) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!inView) return;
-    const startTime = Date.now();
-    const frame = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out-cubic
-      setCount(Math.round(eased * target));
-      if (progress < 1) requestAnimationFrame(frame);
-    };
-    requestAnimationFrame(frame);
-  }, [target, duration, inView]);
-  return count;
-}
 
 const IMPACT_STATS = [
   { value: 50000, suffix: "+", label: "Farmers Protected", icon: Users },
   { value: 96, suffix: "%", label: "Detection Accuracy", icon: Cpu },
-  { value: 34, suffix: "", label: "Districts Covered", icon: Globe },
+  { value: 36, suffix: "", label: "States & UTs Covered", icon: Globe },
   { value: 3.2, suffix: "×", label: "Faster Response", icon: TrendingUp },
 ];
 
@@ -217,8 +201,8 @@ export default function LandingPage() {
         ref={heroRef}
         className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden px-4 pt-20 pb-28 sm:px-6 sm:pt-24 sm:pb-32"
       >
-        {/* Three.js background */}
-        <HeroScene />
+        {/* Three.js background — receives scroll progress for fade-out */}
+        <HeroScene scrollYProgress={scrollYProgress} />
 
         {/* Gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-forest-900/20 via-transparent to-forest-900/80 pointer-events-none" />

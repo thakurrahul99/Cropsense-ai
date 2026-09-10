@@ -17,6 +17,7 @@ export interface ScanResult {
   referenceImage: string;
   location: string;
   district: string;
+  state: string; // ISO 3166-2:IN code e.g. "MH", "PB"
   farmerId: string;
   verified: boolean;
   weatherContext: {
@@ -52,6 +53,7 @@ export const SCAN_RESULTS: ScanResult[] = [
       "https://images.unsplash.com/photo-1628352081506-83c43123a6b9?w=800&q=80",
     location: "Wardha, Maharashtra",
     district: "Wardha",
+    state: "MH",
     farmerId: "farmer-001",
     verified: true,
     weatherContext: {
@@ -103,6 +105,7 @@ export const SCAN_RESULTS: ScanResult[] = [
       "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?w=800&q=80",
     location: "Latur, Maharashtra",
     district: "Latur",
+    state: "MH",
     farmerId: "farmer-002",
     verified: false,
     weatherContext: {
@@ -141,7 +144,7 @@ export const SCAN_RESULTS: ScanResult[] = [
     id: "scan-003",
     timestamp: "2026-09-07T09:10:00Z",
     cropId: "wheat",
-    cropName: "Wheat (GW-496)",
+    cropName: "Wheat (HD-2967)",
     diseaseId: "aphid-infestation",
     diseaseName: "Aphid Infestation",
     diseaseType: "pest",
@@ -153,15 +156,16 @@ export const SCAN_RESULTS: ScanResult[] = [
       "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800&q=80",
     referenceImage:
       "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800&q=80",
-    location: "Nashik, Maharashtra",
-    district: "Nashik",
-    farmerId: "farmer-001",
+    location: "Ludhiana, Punjab",
+    district: "Ludhiana",
+    state: "PB",
+    farmerId: "farmer-003",
     verified: false,
     weatherContext: {
-      temp: 26,
-      humidity: 55,
+      temp: 28,
+      humidity: 52,
       rainfall: 0,
-      condition: "Clear",
+      condition: "Sunny",
     },
     riskFactors: [
       {
@@ -187,6 +191,110 @@ export const SCAN_RESULTS: ScanResult[] = [
     ],
     whyResult:
       "The image shows soft-bodied aphid colonies aggregating on stems near the flag leaf junction, with characteristic honeydew deposits and incipient sooty mold. The density appears moderate — approximately 50–80 aphids per tiller, which is approaching economic threshold (>100 per tiller). The confidence is moderate (76.4%) because image resolution partially limits individual insect identification at this zoom level.",
+  },
+  {
+    id: "scan-004",
+    timestamp: "2026-09-06T08:30:00Z",
+    cropId: "rice",
+    cropName: "Rice (Sona Masuri)",
+    diseaseId: "rice-blast",
+    diseaseName: "Rice Blast",
+    diseaseType: "disease",
+    confidence: 91.3,
+    severity: "critical",
+    riskLevel: "critical",
+    affectedArea: 55,
+    uploadedImage:
+      "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=800&q=80",
+    referenceImage:
+      "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=800&q=80",
+    location: "Burdwan, West Bengal",
+    district: "Burdwan",
+    state: "WB",
+    farmerId: "farmer-004",
+    verified: true,
+    weatherContext: {
+      temp: 33,
+      humidity: 85,
+      rainfall: 22,
+      condition: "Heavy Rain",
+    },
+    riskFactors: [
+      {
+        label: "Visual Evidence",
+        score: 91,
+        description: "Diamond-shaped lesions with gray centers confirmed on flag leaves",
+      },
+      {
+        label: "Weather Conditions",
+        score: 88,
+        description: "High humidity (85%), intermittent rain — ideal for blast sporulation",
+      },
+      {
+        label: "Crop Stage",
+        score: 85,
+        description: "Heading stage — neck blast at this stage is devastating",
+      },
+      {
+        label: "Regional Activity",
+        score: 80,
+        description: "6 confirmed blast cases in Burdwan and Murshidabad this week",
+      },
+    ],
+    whyResult:
+      "Rice Blast (Magnaporthe oryzae) was identified with high confidence. The image shows classic diamond-shaped lesions with gray-white centers and dark brown margins on leaf blades, combined with suspected neck node infection at the panicle base. Wet weather over the past 5 days (>80% RH, rainfall every 2–3 days) has created optimal sporulation conditions. Five neighboring farms in Burdwan district have confirmed blast infections this season.",
+  },
+  {
+    id: "scan-005",
+    timestamp: "2026-09-05T11:20:00Z",
+    cropId: "rice",
+    cropName: "Rice (BPT-5204)",
+    diseaseId: "brown-planthopper",
+    diseaseName: "Brown Planthopper",
+    diseaseType: "pest",
+    confidence: 87.5,
+    severity: "high",
+    riskLevel: "high",
+    affectedArea: 40,
+    uploadedImage:
+      "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=800&q=80",
+    referenceImage:
+      "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=800&q=80",
+    location: "Thanjavur, Tamil Nadu",
+    district: "Thanjavur",
+    state: "TN",
+    farmerId: "farmer-005",
+    verified: false,
+    weatherContext: {
+      temp: 36,
+      humidity: 75,
+      rainfall: 0,
+      condition: "Sunny",
+    },
+    riskFactors: [
+      {
+        label: "Visual Evidence",
+        score: 87,
+        description: "Hopperburn patches visible; brown insects at stem base",
+      },
+      {
+        label: "Weather Conditions",
+        score: 72,
+        description: "Warm, humid weather supports rapid BPH population growth",
+      },
+      {
+        label: "Crop Stage",
+        score: 80,
+        description: "Panicle initiation stage — BPH damage now affects yield severely",
+      },
+      {
+        label: "Regional Activity",
+        score: 76,
+        description: "BPH outbreak confirmed in 4 blocks of Thanjavur district",
+      },
+    ],
+    whyResult:
+      "Brown Planthopper (Nilaparvata lugens) was detected based on circular yellowing (hopperburn) patterns and visible insect aggregations at stem bases near the waterline. The hopperburn radius (~2m patches) suggests population counts have exceeded the economic threshold of 5 insects per hill. Thanjavur's paddy belt is currently experiencing high BPH pressure attributed to warm nights and high humidity — conditions that favor macropterous migration from neighboring districts.",
   },
 ];
 

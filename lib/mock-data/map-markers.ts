@@ -1,4 +1,4 @@
-// Mock data: Map markers for GIS
+// Mock data: Map markers for GIS — Pan-India
 export type MarkerSeverity = "low" | "moderate" | "high" | "critical";
 
 export interface MapMarker {
@@ -11,6 +11,7 @@ export interface MapMarker {
   severity: MarkerSeverity;
   riskLevel: "low" | "medium" | "high" | "critical";
   district: string;
+  state: string; // ISO 3166-2:IN code
   village: string;
   reportsCount: number;
   verifiedCount: number;
@@ -18,8 +19,9 @@ export interface MapMarker {
   verified: boolean;
 }
 
-// Maharashtra-centric coordinates
+// Pan-India coordinates
 export const MAP_MARKERS: MapMarker[] = [
+  // ── Maharashtra ──
   {
     id: "m-001",
     lat: 20.7439,
@@ -30,6 +32,7 @@ export const MAP_MARKERS: MapMarker[] = [
     severity: "critical",
     riskLevel: "critical",
     district: "Wardha",
+    state: "MH",
     village: "Arvi",
     reportsCount: 14,
     verifiedCount: 11,
@@ -46,6 +49,7 @@ export const MAP_MARKERS: MapMarker[] = [
     severity: "high",
     riskLevel: "high",
     district: "Latur",
+    state: "MH",
     village: "Udgir",
     reportsCount: 9,
     verifiedCount: 6,
@@ -62,6 +66,7 @@ export const MAP_MARKERS: MapMarker[] = [
     severity: "moderate",
     riskLevel: "medium",
     district: "Nashik",
+    state: "MH",
     village: "Dindori",
     reportsCount: 5,
     verifiedCount: 2,
@@ -78,6 +83,7 @@ export const MAP_MARKERS: MapMarker[] = [
     severity: "high",
     riskLevel: "high",
     district: "Sangli",
+    state: "MH",
     village: "Tasgaon",
     reportsCount: 7,
     verifiedCount: 5,
@@ -94,6 +100,7 @@ export const MAP_MARKERS: MapMarker[] = [
     severity: "moderate",
     riskLevel: "medium",
     district: "Aurangabad",
+    state: "MH",
     village: "Phulambri",
     reportsCount: 3,
     verifiedCount: 1,
@@ -110,6 +117,7 @@ export const MAP_MARKERS: MapMarker[] = [
     severity: "low",
     riskLevel: "low",
     district: "Nagpur",
+    state: "MH",
     village: "Kalmeshwar",
     reportsCount: 2,
     verifiedCount: 0,
@@ -126,6 +134,7 @@ export const MAP_MARKERS: MapMarker[] = [
     severity: "low",
     riskLevel: "low",
     district: "Solapur",
+    state: "MH",
     village: "Mohol",
     reportsCount: 4,
     verifiedCount: 3,
@@ -142,6 +151,7 @@ export const MAP_MARKERS: MapMarker[] = [
     severity: "critical",
     riskLevel: "critical",
     district: "Akola",
+    state: "MH",
     village: "Barshitakli",
     reportsCount: 12,
     verifiedCount: 10,
@@ -158,6 +168,7 @@ export const MAP_MARKERS: MapMarker[] = [
     severity: "high",
     riskLevel: "high",
     district: "Buldhana",
+    state: "MH",
     village: "Chikhli",
     reportsCount: 6,
     verifiedCount: 4,
@@ -174,10 +185,138 @@ export const MAP_MARKERS: MapMarker[] = [
     severity: "moderate",
     riskLevel: "medium",
     district: "Pune",
+    state: "MH",
     village: "Baramati",
     reportsCount: 8,
     verifiedCount: 5,
     lastReported: "2026-09-07T14:00:00Z",
     verified: true,
+  },
+
+  // ── Punjab ──
+  {
+    id: "m-011",
+    lat: 30.9010,
+    lng: 75.8573,
+    diseaseName: "Aphid Infestation",
+    diseaseType: "pest",
+    cropName: "Wheat",
+    severity: "high",
+    riskLevel: "high",
+    district: "Ludhiana",
+    state: "PB",
+    village: "Jagraon",
+    reportsCount: 11,
+    verifiedCount: 8,
+    lastReported: "2026-09-09T05:00:00Z",
+    verified: true,
+  },
+  {
+    id: "m-012",
+    lat: 31.6340,
+    lng: 74.8723,
+    diseaseName: "Wheat Blast",
+    diseaseType: "disease",
+    cropName: "Wheat",
+    severity: "critical",
+    riskLevel: "critical",
+    district: "Amritsar",
+    state: "PB",
+    village: "Majitha",
+    reportsCount: 7,
+    verifiedCount: 6,
+    lastReported: "2026-09-08T10:00:00Z",
+    verified: true,
+  },
+
+  // ── West Bengal ──
+  {
+    id: "m-013",
+    lat: 23.2324,
+    lng: 87.8615,
+    diseaseName: "Rice Blast",
+    diseaseType: "disease",
+    cropName: "Rice",
+    severity: "critical",
+    riskLevel: "critical",
+    district: "Burdwan",
+    state: "WB",
+    village: "Kalna",
+    reportsCount: 18,
+    verifiedCount: 14,
+    lastReported: "2026-09-09T04:00:00Z",
+    verified: true,
+  },
+  {
+    id: "m-014",
+    lat: 24.1832,
+    lng: 88.2753,
+    diseaseName: "Rice Blast",
+    diseaseType: "disease",
+    cropName: "Rice",
+    severity: "high",
+    riskLevel: "high",
+    district: "Murshidabad",
+    state: "WB",
+    village: "Jiaganj",
+    reportsCount: 9,
+    verifiedCount: 5,
+    lastReported: "2026-09-08T06:00:00Z",
+    verified: true,
+  },
+
+  // ── Karnataka ──
+  {
+    id: "m-015",
+    lat: 15.8281,
+    lng: 74.4977,
+    diseaseName: "Downy Mildew",
+    diseaseType: "disease",
+    cropName: "Grape",
+    severity: "high",
+    riskLevel: "high",
+    district: "Belagavi",
+    state: "KA",
+    village: "Bailhongal",
+    reportsCount: 6,
+    verifiedCount: 4,
+    lastReported: "2026-09-07T10:00:00Z",
+    verified: true,
+  },
+
+  // ── Tamil Nadu ──
+  {
+    id: "m-016",
+    lat: 10.7870,
+    lng: 79.1378,
+    diseaseName: "Brown Planthopper",
+    diseaseType: "pest",
+    cropName: "Rice",
+    severity: "critical",
+    riskLevel: "critical",
+    district: "Thanjavur",
+    state: "TN",
+    village: "Papanasam",
+    reportsCount: 15,
+    verifiedCount: 12,
+    lastReported: "2026-09-08T06:00:00Z",
+    verified: true,
+  },
+  {
+    id: "m-017",
+    lat: 10.5528,
+    lng: 79.4500,
+    diseaseName: "Rice Blast",
+    diseaseType: "disease",
+    cropName: "Rice",
+    severity: "moderate",
+    riskLevel: "medium",
+    district: "Tiruvarur",
+    state: "TN",
+    village: "Mannargudi",
+    reportsCount: 5,
+    verifiedCount: 2,
+    lastReported: "2026-09-07T08:00:00Z",
+    verified: false,
   },
 ];

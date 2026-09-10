@@ -1,12 +1,13 @@
 // Mock data: Diseases and Pests
+import type { LocalizedText } from "@/lib/i18n";
+
 export type ThreatType = "disease" | "pest";
 export type SeverityLevel = "low" | "moderate" | "high" | "critical";
 export type RiskLevel = "low" | "medium" | "high" | "critical";
 
 export interface Disease {
   id: string;
-  name: string;
-  nameHi: string;
+  name: LocalizedText;
   type: ThreatType;
   affectedCrops: string[];
   severity: SeverityLevel;
@@ -21,8 +22,12 @@ export interface Disease {
 export const DISEASES: Disease[] = [
   {
     id: "cotton-bollworm",
-    name: "Pink Bollworm",
-    nameHi: "गुलाबी बॉलवर्म",
+    name: {
+      en: "Pink Bollworm",
+      hi: "गुलाबी बॉलवर्म",
+      mr: "गुलाबी बोंड अळी",
+      pa: "ਗੁਲਾਬੀ ਬੋਲਵਰਮ",
+    },
     type: "pest",
     affectedCrops: ["cotton"],
     severity: "critical",
@@ -42,8 +47,12 @@ export const DISEASES: Disease[] = [
   },
   {
     id: "blast-wheat",
-    name: "Wheat Blast",
-    nameHi: "गेहूं ब्लास्ट",
+    name: {
+      en: "Wheat Blast",
+      hi: "गेहूं ब्लास्ट",
+      mr: "गहू ब्लास्ट",
+      pa: "ਕਣਕ ਬਲਾਸਟ",
+    },
     type: "disease",
     affectedCrops: ["wheat"],
     severity: "critical",
@@ -63,8 +72,12 @@ export const DISEASES: Disease[] = [
   },
   {
     id: "soybean-yellow-mosaic",
-    name: "Yellow Mosaic Virus",
-    nameHi: "पीला मोज़ेक वायरस",
+    name: {
+      en: "Yellow Mosaic Virus",
+      hi: "पीला मोज़ेक वायरस",
+      mr: "पिवळा मोझॅक विषाणू",
+      pa: "ਪੀਲਾ ਮੋਜ਼ੇਕ ਵਾਇਰਸ",
+    },
     type: "disease",
     affectedCrops: ["soybean"],
     severity: "high",
@@ -84,8 +97,12 @@ export const DISEASES: Disease[] = [
   },
   {
     id: "grape-downy-mildew",
-    name: "Downy Mildew",
-    nameHi: "डाउनी फफूंदी",
+    name: {
+      en: "Downy Mildew",
+      hi: "डाउनी फफूंदी",
+      mr: "केवडा रोग",
+      pa: "ਡਾਊਨੀ ਮਿਲਡਿਊ",
+    },
     type: "disease",
     affectedCrops: ["grape"],
     severity: "high",
@@ -105,8 +122,12 @@ export const DISEASES: Disease[] = [
   },
   {
     id: "tomato-late-blight",
-    name: "Late Blight",
-    nameHi: "लेट ब्लाइट",
+    name: {
+      en: "Late Blight",
+      hi: "लेट ब्लाइट",
+      mr: "उशिरा करपा",
+      pa: "ਲੇਟ ਬਲਾਈਟ",
+    },
     type: "disease",
     affectedCrops: ["tomato"],
     severity: "moderate",
@@ -126,10 +147,14 @@ export const DISEASES: Disease[] = [
   },
   {
     id: "aphid-infestation",
-    name: "Aphid Infestation",
-    nameHi: "माहू का प्रकोप",
+    name: {
+      en: "Aphid Infestation",
+      hi: "माहू का प्रकोप",
+      mr: "माव्याचा प्रादुर्भाव",
+      pa: "ਚੇਪੇ ਦਾ ਹਮਲਾ",
+    },
     type: "pest",
-    affectedCrops: ["wheat", "cotton", "soybean", "tomato"],
+    affectedCrops: ["wheat", "cotton", "soybean", "tomato", "rice"],
     severity: "moderate",
     symptoms: [
       "Curling and yellowing of young leaves",
@@ -147,8 +172,12 @@ export const DISEASES: Disease[] = [
   },
   {
     id: "powdery-mildew",
-    name: "Powdery Mildew",
-    nameHi: "पाउडरी फफूंदी",
+    name: {
+      en: "Powdery Mildew",
+      hi: "पाउडरी फफूंदी",
+      mr: "भुरी बुरशी",
+      pa: "ਪਾਊਡਰੀ ਮਿਲਡਿਊ",
+    },
     type: "disease",
     affectedCrops: ["grape", "wheat", "onion"],
     severity: "low",
@@ -166,4 +195,62 @@ export const DISEASES: Disease[] = [
       "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=600&q=80",
     color: "#10B981",
   },
+  // ── RICE DISEASES / PESTS ──
+  {
+    id: "rice-blast",
+    name: {
+      en: "Rice Blast",
+      hi: "धान का झोंका रोग",
+      mr: "भात करपा",
+      pa: "ਝੋਨੇ ਦਾ ਬਲਾਸਟ",
+    },
+    type: "disease",
+    affectedCrops: ["rice"],
+    severity: "critical",
+    symptoms: [
+      "Diamond-shaped lesions with gray centers on leaves",
+      "Dark brown to reddish-brown leaf spots",
+      "Node blast — dark shrivelled neck node (neck rot)",
+      "Completely blasted panicle with whitish empty grains",
+    ],
+    cause: "Magnaporthe oryzae (Ascomycete fungus)",
+    spread:
+      "Wind-dispersed conidia; favored by high humidity, night dew, and nitrogen-rich soils",
+    referenceImage:
+      "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=600&q=80",
+    annotatedImage:
+      "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=600&q=80",
+    color: "#EF4444",
+  },
+  {
+    id: "brown-planthopper",
+    name: {
+      en: "Brown Planthopper",
+      hi: "भूरा फुदका",
+      mr: "तपकिरी तुडतुडा",
+      pa: "ਭੂਰਾ ਫੁਦਕਾ",
+    },
+    type: "pest",
+    affectedCrops: ["rice"],
+    severity: "high",
+    symptoms: [
+      "Circular yellowing patches in field (hopperburn)",
+      "Plants wilt and collapse from center outward",
+      "Brown insects visible at stem base near water level",
+      "Honeydew deposits causing sooty mold on stems",
+    ],
+    cause: "Nilaparvata lugens (Hemiptera: Delphacidae)",
+    spread:
+      "Migrates via wind currents; explosive population buildup favored by dense planting and high nitrogen",
+    referenceImage:
+      "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=600&q=80",
+    annotatedImage:
+      "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=600&q=80",
+    color: "#F59E0B",
+  },
 ];
+
+/** Convenience: look up by id */
+export function getDiseaseById(id: string): Disease | undefined {
+  return DISEASES.find((d) => d.id === id);
+}

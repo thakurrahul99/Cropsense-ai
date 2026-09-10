@@ -16,9 +16,13 @@ import {
   Map,
   AlertTriangle,
   Shield,
+  MapPin,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ALERTS } from "@/lib/mock-data/alerts";
+import { STATES } from "@/lib/mock-data/geo";
+import { LOCALE_LABELS, type Locale } from "@/lib/i18n";
+import { useAppContext } from "@/lib/context/AppContext";
 
 const NAV_LINKS = [
   { href: "/farmer", label: "Dashboard", icon: LayoutDashboard },
@@ -28,19 +32,25 @@ const NAV_LINKS = [
   { href: "/officer", label: "Officer View", icon: Shield },
 ];
 
-const LANGUAGES = [
-  { code: "en", label: "English", native: "English" },
-  { code: "hi", label: "Hindi", native: "हिंदी" },
-  { code: "mr", label: "Marathi", native: "मराठी" },
-];
+const SUPPORTED_LOCALES = Object.entries(LOCALE_LABELS).map(([code, info]) => ({
+  code: code as Locale,
+  ...info,
+}));
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [activeLang, setActiveLang] = useState(LANGUAGES[0]);
+  const [stateOpen, setStateOpen] = useState(false);
   const pathname = usePathname();
-  const unreadAlerts = ALERTS.filter((a) => !a.isRead).length;
+  const { selectedState, selectedStateInfo, setSelectedState, locale, setLocale } =
+    useAppContext();
+
+  // Filter alerts by selected state
+  const visibleAlerts = selectedState
+    ? ALERTS.filter((a) => a.state === selectedState)
+    : ALERTS;
+  const unreadAlerts = visibleAlerts.filter((a) => !a.isRead).length;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -52,7 +62,18 @@ export function Navbar() {
     setMobileOpen(false);
   }, [pathname]);
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClick = () => {
+      setLangOpen(false);
+      setStateOpen(false);
+    };
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, []);
+
   const isLanding = pathname === "/";
+  const activeLangLabel = LOCALE_LABELS[locale];
 
   return (
     <motion.header
@@ -117,16 +138,75 @@ export function Navbar() {
           </nav>
 
           {/* Right side */}
-          <div className="flex items-center gap-2">
-            {/* Language switcher */}
-            <div className="relative hidden sm:block">
+          <div className="flex items-center gap-1">
+            {/* State selector */}
+            <div className="relative hidden sm:block" onClick={(e) => e.stopPropagation()}>
               <motion.button
                 whileHover={{ y: -1 }}
-                onClick={() => setLangOpen(!langOpen)}
+                onClick={() => { setStateOpen(!stateOpen); setLangOpen(false); }}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-pearl-muted hover:text-pearl hover:bg-forest-700/50 transition-all"
+                title="Select State"
+              >
+                <MapPin className="w-3.5 h-3.5 text-jade-400" />
+                <span className="text-xs font-medium max-w-[80px] truncate">
+                  {selectedStateInfo ? selectedStateInfo.name : "All India"}
+                </span>
+                <ChevronDown
+                  className={cn(
+                    "w-3 h-3 transition-transform flex-shrink-0",
+                    stateOpen && "rotate-180"
+                  )}
+                />
+              </motion.button>
+              <AnimatePresence>
+                {stateOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 top-full mt-1 w-56 glass-card py-1 border border-forest-600/30 max-h-80 overflow-y-auto"
+                  >
+                    {/* All India option */}
+                    <button
+                      onClick={() => { setSelectedState(null); setStateOpen(false); }}
+                      className={cn(
+                        "w-full flex items-center justify-between px-3 py-2 text-sm hover:bg-forest-700/50 transition-colors border-b border-forest-600/20",
+                        !selectedState ? "text-jade-400" : "text-pearl-muted hover:text-pearl"
+                      )}
+                    >
+                      <span className="font-medium">🇮🇳 All India</span>
+                      {!selectedState && <span className="text-xs opacity-60">✓</span>}
+                    </button>
+                    {STATES.map((state) => (
+                      <button
+                        key={state.id}
+                        onClick={() => { setSelectedState(state.id); setStateOpen(false); }}
+                        className={cn(
+                          "w-full flex items-center justify-between px-3 py-2 text-sm hover:bg-forest-700/50 transition-colors",
+                          selectedState === state.id
+                            ? "text-jade-400"
+                            : "text-pearl-muted hover:text-pearl"
+                        )}
+                      >
+                        <span>{state.name}</span>
+                        <span className="text-xs opacity-50">{state.nameLocal}</span>
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Language switcher */}
+            <div className="relative hidden sm:block" onClick={(e) => e.stopPropagation()}>
+              <motion.button
+                whileHover={{ y: -1 }}
+                onClick={() => { setLangOpen(!langOpen); setStateOpen(false); }}
                 className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-pearl-muted hover:text-pearl hover:bg-forest-700/50 transition-all"
               >
                 <Globe className="w-3.5 h-3.5" />
-                <span className="text-xs font-medium">{activeLang.code.toUpperCase()}</span>
+                <span className="text-xs font-medium">{locale.toUpperCase()}</span>
                 <ChevronDown
                   className={cn(
                     "w-3 h-3 transition-transform",
@@ -141,18 +221,18 @@ export function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.95 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute right-0 top-full mt-1 w-40 glass-card py-1 border border-forest-600/30"
+                    className="absolute right-0 top-full mt-1 w-44 glass-card py-1 border border-forest-600/30"
                   >
-                    {LANGUAGES.map((lang) => (
+                    {SUPPORTED_LOCALES.map((lang) => (
                       <button
                         key={lang.code}
                         onClick={() => {
-                          setActiveLang(lang);
+                          setLocale(lang.code);
                           setLangOpen(false);
                         }}
                         className={cn(
                           "w-full flex items-center justify-between px-3 py-2 text-sm hover:bg-forest-700/50 transition-colors",
-                          activeLang.code === lang.code
+                          locale === lang.code
                             ? "text-jade-400"
                             : "text-pearl-muted hover:text-pearl"
                         )}
@@ -219,6 +299,23 @@ export function Navbar() {
             className="md:hidden border-t border-forest-600/30 bg-forest-900/98 backdrop-blur-xl overflow-hidden"
           >
             <div className="px-4 py-3 space-y-1">
+              {/* State selector (mobile) */}
+              <div className="flex items-center gap-2 px-3 py-2 mb-2">
+                <MapPin className="w-4 h-4 text-jade-400" />
+                <select
+                  value={selectedState ?? ""}
+                  onChange={(e) => setSelectedState(e.target.value || null)}
+                  className="flex-1 bg-forest-700/50 text-pearl text-sm rounded-lg px-2 py-1 border border-forest-600/30 focus:outline-none focus:border-jade-500/50"
+                >
+                  <option value="">🇮🇳 All India</option>
+                  {STATES.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               {NAV_LINKS.map((link, i) => {
                 const Icon = link.icon;
                 const isActive = pathname === link.href;

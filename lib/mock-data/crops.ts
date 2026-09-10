@@ -38,6 +38,15 @@ export const CROPS: Crop[] = [
     image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&q=80",
   },
   {
+    id: "rice",
+    name: "Rice",
+    nameHi: "चावल",
+    variety: "Sona Masuri / Basmati",
+    icon: "🌾",
+    season: "Kharif",
+    image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=400&q=80",
+  },
+  {
     id: "sugarcane",
     name: "Sugarcane",
     nameHi: "गन्ना",
