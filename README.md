@@ -9,7 +9,7 @@ Early Detection and Management of Crop Diseases & Pest Infestations»
 
 ---
 
-🚜 What is CropSense?
+🚜 What is CropSense AI?
 
 CropSense AI is a software-only, AI-powered crop health intelligence platform designed to help farmers and agricultural authorities detect, understand, predict, and manage crop diseases and pest infestations at an early stage.
 
