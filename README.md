@@ -1,4 +1,4 @@
-# 🌱 CropSense AI
+# 🌱 AgriSense AI
 
 ### **AI-Powered Crop Health Intelligence Platform**
 
@@ -9,9 +9,9 @@
 
 ---
 
-## 🚜 What is CropSense?
+## 🚜 What is AgriSense?
 
-**CropSense AI** is a software-only, AI-powered **crop health intelligence platform** designed to help farmers and agricultural authorities detect, understand, predict, and manage crop diseases and pest infestations at an early stage.
+**AgriSense AI** is a software-only, AI-powered **crop health intelligence platform** designed to help farmers and agricultural authorities detect, understand, predict, and manage crop diseases and pest infestations at an early stage.
 
 Instead of simply identifying a disease, CropSense creates a complete intelligence cycle:
 
@@ -46,7 +46,7 @@ DETECT → UNDERSTAND → PREDICT → MAP → ADVISE → VERIFY → LEARN
 
 ---
 
-# 🔄 CropSense Intelligence Pipeline
+# 🔄 AgriSense Intelligence Pipeline
 
 ```text
                  📷 CROP IMAGE
@@ -85,7 +85,7 @@ DETECT → UNDERSTAND → PREDICT → MAP → ADVISE → VERIFY → LEARN
 
 ```text
                          ┌─────────────────────┐
-                         │      🌱 CropSense   │
+                         │      🌱 AgriSense   │
                          └──────────┬──────────┘
                                     │
                   ┌─────────────────┴─────────────────┐
@@ -167,7 +167,7 @@ Crop health history, follow-ups and alerts help track the situation over time.
 
 # 🏛️ Agricultural Officer Command Center
 
-CropSense also provides a centralized monitoring interface for agricultural authorities.
+AgriSense also provides a centralized monitoring interface for agricultural authorities.
 
 ### 🔥 Threat Intelligence
 
@@ -198,7 +198,7 @@ This creates a **human-in-the-loop validation system**.
 
 # 🗺️ GIS Risk Intelligence
 
-CropSense transforms individual crop diagnoses into **regional intelligence**.
+AgriSense transforms individual crop diagnoses into **regional intelligence**.
 
 ```text
 Individual Reports
@@ -336,7 +336,7 @@ Recharts
 
 # 📊 Data & Intelligence Layer
 
-CropSense combines multiple data sources:
+AgriSense combines multiple data sources:
 
 ```text
              ┌─────────────┐
@@ -406,7 +406,7 @@ CropSense combines multiple data sources:
 
 Traditional systems may stop after identifying a disease.
 
-**CropSense goes further.**
+**AgriSense goes further.**
 
 ```text
 Detection
@@ -430,7 +430,7 @@ Officer Verification
 
 ### 💡 Key Innovation
 
-> **CropSense converts individual crop observations into actionable regional agricultural intelligence.**
+> **AgriSense converts individual crop observations into actionable regional agricultural intelligence.**
 
 This enables a shift from:
 
@@ -468,7 +468,7 @@ to
 
 # 🔮 Future Scope
 
-CropSense can evolve into a larger agricultural intelligence ecosystem with:
+AgriSense can evolve into a larger agricultural intelligence ecosystem with:
 
 * 📡 IoT-based field monitoring
 * 🛰️ Satellite imagery
@@ -522,7 +522,7 @@ CropSense can evolve into a larger agricultural intelligence ecosystem with:
 
 ---
 
-## 🌾 CropSense AI
+## 🌾 AgriSense AI
 
 ### **From a single crop image to regional agricultural intelligence.**
 
